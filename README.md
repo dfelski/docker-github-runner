@@ -1,12 +1,14 @@
 # GitHub Runner
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/tcardonne/github-runner)](https://hub.docker.com/r/tcardonne/github-runner)
+Based on [tcardonne/github-runner](https://hub.docker.com/r/tcardonne/github-runner)
+
+[![Docker Pulls](https://img.shields.io/docker/pulls/dfelski/github-runner)](https://hub.docker.com/r/dfelski/github-runner)
 
 -----------
 GitHub allows developers to run GitHub Actions workflows on your own runners.
 This Docker image allows you to create your own runners on Docker.
 
-For now, there are only Debian Buster (tagged with `latest` and `vX.Y.Z`) and Ubuntu Focal (tagged with `ubuntu-20.04` and `vX.Y.Z-ubuntu-20.04`) images, but I may add more variants in the future. Feel free to create an issue if you want another base image.
+For now, there is only a Debian Bullseye image.
 
 ## Important notes
 
@@ -22,7 +24,7 @@ docker run -it --name my-runner \
     -e RUNNER_NAME=my-runner \
     -e GITHUB_ACCESS_TOKEN=token \
     -e RUNNER_REPOSITORY_URL=https://github.com/... \
-    tcardonne/github-runner
+    dfelski/github-runner
 ```
 
 ### Using Docker inside your Actions
@@ -35,7 +37,7 @@ docker run -it --name my-runner \
     -e GITHUB_ACCESS_TOKEN=token \
     -e RUNNER_REPOSITORY_URL=https://github.com/... \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    tcardonne/github-runner
+    dfelski/github-runner
 ```
 
 ### Using docker-compose.yml
@@ -46,7 +48,7 @@ version: "3.7"
 
 services:
     runner:
-      image: tcardonne/github-runner:latest
+      image: dfelski/github-runner:latest
       environment:
         RUNNER_NAME: "my-runner"
         RUNNER_REPOSITORY_URL: ${RUNNER_REPOSITORY_URL}
